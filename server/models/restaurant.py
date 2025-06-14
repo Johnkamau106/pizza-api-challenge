@@ -1,10 +1,10 @@
 from server.app import db
 
-class Restraunt:
-    __tablenme__ = 'restraunts'
-    id = db.column(db.Integer, primary_key=True)
-    name = db.column(db.string(50), nullable=False)
-    address = db.column(db.string(100), nullable=False)
+class Restaurant(db.Model):
+    __tablename__ = 'restaurants'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+    address = db.Column(db.String(100), nullable=False)
 
 
-    RestrauntPizzas = db.relationship("RestrauntPizza", backref="restraunt")
+    RestaurantPizzas = db.relationship("RestaurantPizza", backref="restaurant")
