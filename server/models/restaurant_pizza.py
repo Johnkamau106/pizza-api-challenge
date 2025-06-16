@@ -7,7 +7,8 @@ class RestaurantPizza(db.Model):
     price = db.Column(db.Float, nullable=False)
     
     restaurant_id = db.Column(db.Integer, db.ForeignKey("restaurants.id"), nullable=False)
-    pizza_id = db.Column(db.Integer, db.ForeignKey("pizas.id"), nullable=False)
+    pizza_id = db.Column(db.Integer, db.ForeignKey("pizzas.id"), nullable=False)
+
 
 
 
