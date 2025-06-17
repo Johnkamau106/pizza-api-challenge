@@ -32,3 +32,4 @@ def seed_data():
 
         print("Database seeded successfully!")
         
+        

@@ -44,3 +44,4 @@ def delete_restaurant(id):
     else:
         return jsonify({"error": "Restaurant not found"}), 404
     
+    
