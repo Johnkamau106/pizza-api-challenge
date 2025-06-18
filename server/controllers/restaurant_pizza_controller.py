@@ -11,7 +11,7 @@ def create_restaurant_pizza():
     data = request.get_json()
 
     try:
-        price = int(data.get("price"))
+        price = float(data.get("price"))
         pizza_id = int(data.get("pizza_id"))
         restaurant_id = int(data.get("restaurant_id"))
     except (TypeError, ValueError):
