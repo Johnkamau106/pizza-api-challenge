@@ -50,7 +50,7 @@ A RESTful API for managing restaurants, pizzas, and their relationships, built w
 4. **Run migrations**
    ```bash
    export FLASK_APP=server/app.py
-   flask db init        # Only once, if migrations/ does not exist
+   flask db init       
    flask db migrate -m "Initial migration"
    flask db upgrade
    ```
@@ -138,7 +138,7 @@ Deletes a restaurant and all related RestaurantPizzas.
 ```
 Status: 404
 
----
+
 
 ### GET /pizzas/
 Returns a list of all pizzas.
