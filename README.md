@@ -45,7 +45,7 @@ A RESTful API for managing restaurants, pizzas, and their relationships, built w
 
 3. **Set up the database**
    - By default, uses SQLite (`dev.db`).
-   - To use another DB, set the `DATABASE_URL` environment variable in `server/config.py`.
+   - To use another DB, set the `DATABASE_URL` environment variable in `server/config.py` or your `.env` file.
 
 4. **Run migrations**
    ```bash
@@ -63,8 +63,42 @@ A RESTful API for managing restaurants, pizzas, and their relationships, built w
 6. **Run the server**
    ```bash
    export FLASK_APP=server/app.py
-   flask run
+   flask run --port=5002
    ```
+
+---
+
+## 🏠 Root Route (`/`)
+
+When you open the site in your browser (e.g. http://localhost:5002/), you will see:
+- A JSON list of all pizzas if the database has pizzas.
+- If the database is empty, an example pizza is shown.
+
+**Example (if database is empty):**
+```json
+[
+  {
+    "id": 1,
+    "name": "Example Pizza",
+    "ingredients": "Dough, Tomato Sauce, Cheese"
+  }
+]
+```
+**Example (if database has pizzas):**
+```json
+[
+  {
+    "id": 1,
+    "name": "Margherita",
+    "ingredients": "Dough, Tomato Sauce, Cheese"
+  },
+  {
+    "id": 2,
+    "name": "Pepperoni",
+    "ingredients": "Dough, Tomato Sauce, Cheese, Pepperoni"
+  }
+]
+```
 
 ---
 
@@ -203,4 +237,4 @@ Status: 400 Bad Request
 - All endpoints require trailing slashes (`/`).
 - Use the correct HTTP method for each endpoint.
 - The API uses SQLite by default for easy local development.
-
+- The root URL `/` always returns a JSON example if the database is empty, so you can see the API structure immediately.

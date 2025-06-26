@@ -1,3 +1,4 @@
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -37,7 +38,21 @@ def create_app():
 
     @app.route("/")
     def home():
-        return {"message": "Welcome to the Pizza API!"}
+        from server.models.pizza import Pizza
+        pizzas = Pizza.query.all()
+        pizza_list = [{
+            "id": pizza.id,
+            "name": pizza.name,
+            "ingredients": pizza.ingredients
+        } for pizza in pizzas]
+        if pizza_list:
+            return pizza_list
+        else:
+            return [{
+                "id": 1,
+                "name": "Example Pizza",
+                "ingredients": "Dough, Tomato Sauce, Cheese"
+            }]
 
     with app.app_context():
         print("Registered routes:")

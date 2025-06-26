@@ -6,6 +6,31 @@ from server.app import db
 
 restaurant_pizza_bp = Blueprint('restaurant_pizza', __name__, url_prefix='/restaurant_pizzas')
 
+@restaurant_pizza_bp.route('/', methods=['GET'])
+def get_restaurant_pizzas():
+    restaurant_pizzas = RestaurantPizza.query.all()
+    result = []
+    for rp in restaurant_pizzas:
+        pizza = Pizza.query.get(rp.pizza_id)
+        restaurant = Restaurant.query.get(rp.restaurant_id)
+        result.append({
+            "id": rp.id,
+            "price": rp.price,
+            "pizza_id": rp.pizza_id,
+            "restaurant_id": rp.restaurant_id,
+            "pizza": {
+                "id": pizza.id,
+                "name": pizza.name,
+                "ingredients": pizza.ingredients
+            } if pizza else None,
+            "restaurant": {
+                "id": restaurant.id,
+                "name": restaurant.name,
+                "address": restaurant.address
+            } if restaurant else None
+        })
+    return jsonify(result)
+
 @restaurant_pizza_bp.route('/', methods=['POST'])
 def create_restaurant_pizza():
     data = request.get_json()
